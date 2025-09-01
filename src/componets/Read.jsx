@@ -1,15 +1,20 @@
 import React from 'react'
+import { toast } from 'react-toastify'
 const Read = (props) => {
   const todo = props.todo
   const settodo = props.settodo
   const DeleteHandler = (id) => {
     const filterTodo = todo.filter((todos) => todos.id != id)
     settodo(filterTodo)
+    toast.error('Your Todo has been deleted')
   }
   const renderTodo = todo.map(todos => {
     return <li className='flex mb-4 font-thin justify-between text-3xl items-center list-none rounded p-5 bg-gray-900 ' key={todos.id}>
-     <span> {todos.task}</span>
-      <button className='text-red-600 text-xl font-thin hover:cursor-pointer' onClick={() => DeleteHandler(todos.id)}>Delete</button></li>
+      <span> {todos.title}</span>
+      <button className='text-red-600 text-xl font-thin hover:cursor-pointer'
+        onClick={() =>
+          DeleteHandler(todos.id)
+        }>Delete</button></li>
 
   })
 
